@@ -29,6 +29,7 @@
  */
 
 #include <fctsys.h>
+#include <wx/stdpaths.h>
 #include <confirm.h>
 #include <gestfich.h>
 #include <pgm_base.h>
@@ -592,7 +593,7 @@ void TREE_PROJECT_FRAME::ReCreateTreePrj()
     if( !fn.IsOk() )
     {
         fn.Clear();
-        fn.SetPath( ::wxGetCwd() );
+        fn.SetPath( wxStandardPaths::Get().GetDocumentsDir() );
         fn.SetName( NAMELESS_PROJECT );
         fn.SetExt( ProjectFileExtension );
     }

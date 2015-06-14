@@ -27,6 +27,7 @@
  */
 
 #include <fctsys.h>
+#include <wx/stdpaths.h>
 #include <kiface_i.h>
 #include <pgm_base.h>
 #include <gr_basic.h>
@@ -330,7 +331,8 @@ SCH_EDIT_FRAME::SCH_EDIT_FRAME( KIWAY* aKiway, wxWindow* aParent ):
     m_showAxis = false;                 // true to show axis
     m_showBorderAndTitleBlock = true;   // true to show sheet references
     m_CurrentSheet = new SCH_SHEET_PATH;
-    m_DefaultSchematicFileName = NAMELESS_PROJECT;
+    m_DefaultSchematicFileName = wxStandardPaths::Get().GetDocumentsDir() + wxFileName::GetPathSeparator();
+    m_DefaultSchematicFileName += NAMELESS_PROJECT;
     m_DefaultSchematicFileName += wxT( ".sch" );
     m_showAllPins = false;
     m_previewPosition = wxDefaultPosition;
@@ -910,8 +912,7 @@ void SCH_EDIT_FRAME::OnLoadCmpToFootprintLinkFile( wxCommandEvent& event )
 
 void SCH_EDIT_FRAME::OnNewProject( wxCommandEvent& event )
 {
-//  wxString pro_dir = wxPathOnly( Prj().GetProjectFullName() );
-    wxString pro_dir = wxGetCwd();
+    wxString pro_dir = wxStandardPaths::Get().GetDocumentsDir();
 
     wxFileDialog dlg( this, _( "New Schematic" ), pro_dir,
                       wxEmptyString, SchematicFileWildcard,
@@ -943,8 +944,7 @@ void SCH_EDIT_FRAME::OnNewProject( wxCommandEvent& event )
 
 void SCH_EDIT_FRAME::OnLoadProject( wxCommandEvent& event )
 {
-//  wxString pro_dir = wxPathOnly( Prj().GetProjectFullName() );
-    wxString pro_dir = wxGetCwd();
+    wxString pro_dir = wxStandardPaths::Get().GetDocumentsDir();
 
     wxFileDialog dlg( this, _( "Open Schematic" ), pro_dir,
                       wxEmptyString, SchematicFileWildcard,
