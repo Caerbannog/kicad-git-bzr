@@ -131,7 +131,7 @@ EDA_3D_FRAME::EDA_3D_FRAME( KIWAY* aKiway, PCB_BASE_FRAME* aParent,
     SetSize( m_FramePos.x, m_FramePos.y, m_FrameSize.x, m_FrameSize.y );
 
     // Create the status line
-    static const int dims[5] = { -1, 100, 100, 100, 140 };
+    static const int dims[5] = { -1, 100, 100, 140, 140 };
 
     CreateStatusBar( 5 );
     SetStatusWidths( 5, dims );
